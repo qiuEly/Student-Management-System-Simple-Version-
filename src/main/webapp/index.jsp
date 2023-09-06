@@ -1,6 +1,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.example.demo2.Dao.DBUtil" %>
-<%@ page import="com.example.demo2.Student" %><%--
+<%@ page import="com.example.demo2.Student" %>
+<%@ page import="com.example.demo2.Dao.UserDao" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2023/9/2
@@ -42,25 +43,34 @@ if (cookies != null) {
     <label for="password">密码</label><input type="password" name="password" id="password" value="<%=pass%>"/>
     <input type="submit" value="submit"/>
 </form>
+<div id = 'register'>
+    没有账号请点击:
+    <a href = "./register.jsp" id = 'reg'>注册</a>
+</div>
 <%
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     if (username != null && password != null) {
 //        new DBUtil();
 //        设置cookie
-        if (username.equals(DBUtil.getUsername()) && password.equals(DBUtil.getPassword())) {
-            session.setAttribute("username", username);
-            Cookie userw = new Cookie("username",username);
-            Cookie passw = new Cookie("password",password);
-            userw.setMaxAge(60*60*24*7);
-            passw.setMaxAge(60*60*24*7);
-            response.addCookie(passw);
-            response.addCookie(userw);
-            response.sendRedirect("./listStudent");
-        } else {
-            out.println("用户名或密码错误");
-
+        UserDao userdao = new UserDao();
+        try {
+            if (userdao.getUser(username, password) ){
+                session.setAttribute("username", username);
+                Cookie userw = new Cookie("username", username);
+                Cookie passw = new Cookie("password", password);
+                userw.setMaxAge(60 * 60 * 24 * 7);
+                passw.setMaxAge(60 * 60 * 24 * 7);
+                response.addCookie(passw);
+                response.addCookie(userw);
+                response.sendRedirect("./listStudent");
+            } else {
+                out.println("用户名或密码错误");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
     }
 %>
 </body>
