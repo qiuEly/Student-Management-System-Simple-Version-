@@ -41,7 +41,7 @@
         <th> <a href="deleteStudent.jsp">删除某个学生信息</a> </th>
         <th><a href="addStudent.jsp">添加学生信息</a> </th>
         <th><a href="updateStudent.jsp">修改学生信息</a> </th>
-        <th><a href="./listStudent">按照成绩降序查看</a> </th>
+        <th><a href="./listStudent">按照成绩升序查看</a> </th>
     </tr>
 </table>
 </body>

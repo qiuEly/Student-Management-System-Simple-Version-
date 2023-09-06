@@ -23,6 +23,7 @@
 <%--        </tr>--%>
 <%--    </table>--%>
 <h1 align="center">学生信息管理系统Web版</h1>
+<%--尝试cookie登录--%>
 <%
     String pass = null;
     String name = null;
@@ -45,7 +46,8 @@ if (cookies != null) {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     if (username != null && password != null) {
-        new DBUtil();
+//        new DBUtil();
+//        设置cookie
         if (username.equals(DBUtil.getUsername()) && password.equals(DBUtil.getPassword())) {
             session.setAttribute("username", username);
             Cookie userw = new Cookie("username",username);
