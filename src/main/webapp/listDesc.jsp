@@ -10,11 +10,39 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        body{
+            background-image: url("https://w.wallhaven.cc/full/1p/wallhaven-1pd1o9.jpg");
+            align-items: center;
+            /*display: flex;*/
+            justify-content: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            padding: 20px;
+        }
+        .table-container tr {
+
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            padding: 20px;
+            text-align: center;
+
+        }
+
+    </style>
 </head>
-<body>
-<table width="800" frame="box" align="center">
+<body><h2 >学生信息管理系统Web版</h2>
+<table width="800" frame="box" class="table-container" >
     <tr>
-        <h1 align="center">学生信息管理系统Web版</h1>
+
     </tr>
     <tr>
         <%--      <th height="35">序号</th>--%>

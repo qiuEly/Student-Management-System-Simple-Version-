@@ -8,6 +8,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <style>
+        body{
+            background-image: url("https://w.wallhaven.cc/full/1p/wallhaven-1pd1o9.jpg");
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .register-container {
+
+            padding :20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+        .register-container h2 {
+            text-align: center;
+        }
+        .register-container form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        }
+        .register-container input[type = "submit"]{
+            background-color: #007BFF;
+            padding : 10px;
+            border : none;
+            border-radius: 4px;
+            width : 100%;
+        }
+    </style>
     <title>Register界面</title>
     <script src = "https://cdn.staticfile.org/jquery/3.7.1/jquery.js"></script>
     <script>
@@ -36,17 +66,20 @@
     </script>
 </head>
 <body>
-<form action="./register">
-       <label id = "lableName">
-              用户名：
-           <input type="text" name = "username" id = "username">
+<div class = "register-container">
+    <h2>注册</h2>
+    <form action="./register">
+        <label id = "lableName">
+                  用户名：
+             <input type="text" name = "username" id = "username">
        </label>
-        <span id = "username-message"></span>
+             <span id = "username-message"></span>
        <label>
                 密码：
              <input type="password" name = "password" id = "password">
        </label>
-        <button id = "submit">注册</button>
-</form>
+        <input type="submit" value = "注册">
+    </form>
+    </div>
 </body>
 </html>

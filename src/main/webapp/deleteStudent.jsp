@@ -9,9 +9,17 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        body{
+            background-image: url("https://w.wallhaven.cc/full/1p/wallhaven-1pd1o9.jpg");
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <form  action="${pageContext.request.contextPath}/deleteStudent">
+    <form  action="${pageContext.request.contextPath}/deleteStudent" >
         <label>请输入要删除的学生信息:</label>
         <label>
             <input type="text" name = "name"/>

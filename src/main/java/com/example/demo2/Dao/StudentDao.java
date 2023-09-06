@@ -125,8 +125,8 @@ public class StudentDao {
     public void setConnection() throws Exception {
         conn = DBUtil.getConnection();
     }
-    //根据姓名查询学生信息(前端忘记实现)
-    public Student get(String name) throws Exception {
+    //根据姓名查询学生信息
+    public boolean get(String name) throws Exception {
         try {
             setConnection();
         } catch (Exception e) {
@@ -137,14 +137,7 @@ public class StudentDao {
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1,name);
         ResultSet rs = ps.executeQuery();
-        if (rs.next()){
-            student.setName(rs.getString("name"));
-            student.setAge(rs.getInt("age"));
-            student.setId(rs.getInt("id"));
-            student.setSex(rs.getString("sex"));
-            student.setScore(rs.getDouble("score"));
-        }
-        return student;
+        return rs.next();
     }
 
 }

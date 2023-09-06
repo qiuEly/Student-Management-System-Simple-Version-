@@ -12,6 +12,61 @@
 <html>
 <head>
     <title>学生信息管理系统Web版</title>
+    <style>
+      body{
+            background-image: url("https://w.wallhaven.cc/full/1p/wallhaven-1pd1o9.jpg");
+            align-items: center;
+          display: flex;
+          justify-content: center;
+      }
+      .login-container {
+
+          padding :20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          width: 300px;
+      }
+      .login-container h2 {
+            text-align: center;
+      }
+      .login-container form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+      }
+      .login-container input[type = "submit"]{
+          background-color: #007BFF;
+          padding : 10px;
+          border : none;
+          border-radius: 4px;
+          width : 100%;
+      }
+    </style>
+    <script src = "https://cdn.staticfile.org/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#username').blur(function() { // 当用户名输入框失去焦点时执行
+                var username = $(this).val(); // 获取用户名输入框的值
+                console.log(username);
+                $.ajax({
+                    url: './sameName',
+                    type: 'POST', // 使用POST方法传递数据
+                    data: {username: username},
+                    success: function(data) { // 成功接收到返回数据时执行
+                        console.log(data);
+                        if (data != "success") {
+                            $('#username-message').text('用户名不存在').css('color', 'red');
+                        } else {
+                            $('#username-message').hide();
+                        }
+                    },
+                    error: function() { // 接收返回数据失败时执行
+                        alert('Ajax请求失败，请重试！');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <%--   <table>--%>
@@ -23,7 +78,7 @@
 
 <%--        </tr>--%>
 <%--    </table>--%>
-<h1 align="center">学生信息管理系统Web版</h1>
+
 <%--尝试cookie登录--%>
 <%
     String pass = null;
@@ -38,14 +93,20 @@ if (cookies != null) {
         }
     }
 %>
-<form action="./index.jsp" method="post" align="center">
-    <label for="username">用户名</label><input type="text" name="username" id="username" value="<%=name%>"/>
-    <label for="password">密码</label><input type="password" name="password" id="password" value="<%=pass%>"/>
-    <input type="submit" value="submit"/>
-</form>
-<div id = 'register'>
-    没有账号请点击:
-    <a href = "./register.jsp" id = 'reg'>注册</a>
+<div class = "login-container">
+    <h1 align="center">学生信息管理系统Web版</h1>
+    <h2>用户登录</h2>
+    <form action="./index.jsp" method="post" align="center">
+        <label for="username">用户名</label><input type="text" name="username" id="username" value="<%=name%>" required/>
+        <span id = "username-message"></span>
+        <label for="password">密码</label><input type="password" name="password" id="password" value="<%=pass%>" required/>
+        <input type="submit" value="submit"/>
+
+        <p id = 'register'>
+            还没有账号?
+        <a href = "./register.jsp" id = 'reg'>注册</a>
+        </p>
+    </form>
 </div>
 <%
     String username = request.getParameter("username");
